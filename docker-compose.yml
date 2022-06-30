@@ -1,0 +1,28 @@
+version: '3.4'
+services:
+  dbsetup:
+    build:
+      dockerfile: BankingDataStore.Console/Dockerfile
+    restart: on-failure      
+    depends_on:
+      - database
+    environment:
+      SERVER_NAME: "database"
+      USERNAME: "sa"
+      PASSWORD: "Pa55w0rd123!"
+      DATABASE_NAME: "customeraccountsdb"
+    
+  database:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    restart: always
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Pa55w0rd123!"
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./bankdata/data:/var/opt/mssql/data
+      - ./bankdata/logs:/var/opt/mssql/log
+      - ./bankdata/secrets:/var/opt/mssql/secrets
+
+

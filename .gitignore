@@ -1,0 +1,10 @@
+
+.idea/.idea.Demo.Aci.DbMigrations/.idea/
+
+bankdata/
+
+BankingDataStore.Console/bin/Debug/net6.0/
+
+BankingDataStore.Console/obj/Debug/net6.0/
+
+BankingDataStore.Console/obj/
