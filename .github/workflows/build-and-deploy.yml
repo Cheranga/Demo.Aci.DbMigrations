@@ -1,0 +1,38 @@
+﻿name: "Demo.Aci.DbMigrations"
+concurrency: "Demo.Aci.DbMigrations"
+env:
+  DOTNET_VERSION: 6.0.x  
+on:
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - README.md
+      - .gitignore
+        
+    workflow_dispatch:
+      
+jobs:
+  deploytodev:
+    environment: DEV
+    name: DEV
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      ENVNAME: "dev"
+      IMAGE_NAME: "demo.db.bankaccounts"
+      
+    steps:
+      - name: Generate Build Number
+        id: generatebuildnumber
+        run: |
+          echo "BUILD_VERSION=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
+
+      - name: Build Image and Publish
+        uses: Cheranga/GitHubActions/buildandpushtodockerhub@master
+        with:
+          dockerUserName: ${{secrets.DOCKER_USER}}
+          dockerPassword: ${{secrets.DOCKER_PASSWORD}}
+          dockerFilePath: BankingDataStore.Console/Dockerfile
+          imageName: ${{ env.IMAGE_NAME }}
+          imageTag: ${{ env.BUILD_VERSION }}             
