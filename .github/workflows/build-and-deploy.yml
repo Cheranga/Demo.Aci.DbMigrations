@@ -16,7 +16,6 @@ jobs:
   deploytodev:
     environment: DEV
     name: DEV
-    needs: build
     runs-on: ubuntu-latest
     env:
       ENVNAME: "dev"
