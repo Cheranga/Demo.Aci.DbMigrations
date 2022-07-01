@@ -21,7 +21,7 @@ jobs:
     env:
       ENVNAME: "dev"
       IMAGE_NAME: "demo.db.bankaccounts"
-      RG_NAME: rg-bankaccounts-${{ENVNAME}}
+      RG_NAME: rg-bankaccounts-dev
       RG_LOCATION: australiasoutheast
       
     steps:
