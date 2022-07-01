@@ -1,7 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using System.Threading.Channels;
-using DbUp;
+﻿using DbUp;
 
 Console.WriteLine("Starting database migrations");
 
@@ -38,4 +35,3 @@ if (upgradeEngine.IsUpgradeRequired())
 
 Console.WriteLine("Database migrations are not required");
 return 0;
-

@@ -8,10 +8,10 @@ param location string = resourceGroup().location
 param image string
 
 @description('The number of CPU cores to allocate to the container.')
-param cpuCores int = int('0.5')
+param cpuCores int = 1
 
 @description('The amount of memory to allocate to the container in gigabytes.')
-param memoryInGb int = int('0.5')
+param memoryInGb int = 1
 
 @description('The behavior of Azure runtime if container has stopped.')
 @allowed([
@@ -55,7 +55,7 @@ resource containerGroup 'Microsoft.ContainerInstance/containerGroups@2021-09-01'
             }            
             {
               name: 'PASSWORD'
-              value: databasePassword
+              secureValue: databasePassword
             }            
             {
               name: 'DATABASE_NAME'
@@ -69,6 +69,3 @@ resource containerGroup 'Microsoft.ContainerInstance/containerGroups@2021-09-01'
     restartPolicy: restartPolicy    
   }
 }
-
-output containerIPv4Address string = containerGroup.properties.ipAddress.ip
-output managedId string = containerGroup.identity.principalId
