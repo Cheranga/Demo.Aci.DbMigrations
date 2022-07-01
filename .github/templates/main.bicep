@@ -22,18 +22,18 @@ module database 'sqlserver/template.bicep' = {
   }
 }
 
-module containerInstance 'aci/template.bicep' = {
-  name: '${buildNumber}-container-instance'
-  params: {
-    location: location
-    name: aciName
-    databaseServerName: database.outputs.databaseServerUrl
-    databaseName: databaseName
-    databaseUserName: databaseUserName
-    databasePassword: databasePassword
-    image: containerImage
-  }
-  dependsOn: [
-    database
-  ]
-}
+// module containerInstance 'aci/template.bicep' = {
+//   name: '${buildNumber}-container-instance'
+//   params: {
+//     location: location
+//     name: aciName
+//     databaseServerName: database.outputs.databaseServerUrl
+//     databaseName: databaseName
+//     databaseUserName: databaseUserName
+//     databasePassword: databasePassword
+//     image: containerImage
+//   }
+//   dependsOn: [
+//     database
+//   ]
+// }
