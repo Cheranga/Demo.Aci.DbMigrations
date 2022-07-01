@@ -21,6 +21,8 @@ jobs:
     env:
       ENVNAME: "dev"
       IMAGE_NAME: "demo.db.bankaccounts"
+      RG_NAME: rg-bankaccounts-${{env.ENVNAME}}
+      RG_LOCATION: australiasoutheast
       
     steps:
       - name: Generate Build Number
