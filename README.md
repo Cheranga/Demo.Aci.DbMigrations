@@ -171,19 +171,32 @@ Please refer the `.github` directory for these templates.
 ```mermaid
 sequenceDiagram
   code changes->>CI artifact: publish Bicep templates as artifact
-  CI artifact->>DEV environment: trigger
+  CI artifact->>DEV Environment: trigger
   DEV Environment->>DEV Environment: generate build number
-  DEV Environment->>DEV Environment: build image and push to Docker Hub
-  DEV Environment->>DEV Environment: create resource group if does not exist
+  DEV Environment->>Docker Hub: build image and push to Docker Hub
+  DEV Environment->>Azure: create resource group if does not exist
   DEV Environment->>DEV Environment: download artifact (Bicep templates)
-  DEV Environment->>DEV Environment: provision resources using Bicep templates
+  DEV Environment->>Azure: provision resources using Bicep templates
     
 ```
+![The deployment pipeline in action](images/cicdrun.png)
 
 
 [<<back](#table-of-contents)
 
-### Deployments
+## Deployments
+
+* The resource group and the deployment histories are created
+
+![deployment history](images/deployment_history.png)
+
+* The ACI run, as you can see the migrations have been performed and the container instance is not running anymore (i.e the status is `Terminated`)
+
+![aci](images/aci.png)
+
+* The database tables have been created as per the migration activities
+
+![database migration results](images/table_creation.png)
 
 [<<back](#table-of-contents)
 

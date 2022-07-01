@@ -15,8 +15,6 @@ param adminUserName string
 @secure()
 param adminPassword string
 
-var dbServerUrl = 'tcp:${serverName}.database.windows.net'
-
 resource sqlServer 'Microsoft.Sql/servers@2020-02-02-preview' = {
   name: serverName
   location: location
