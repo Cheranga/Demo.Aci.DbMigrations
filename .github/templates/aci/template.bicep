@@ -55,7 +55,7 @@ resource containerGroup 'Microsoft.ContainerInstance/containerGroups@2021-09-01'
             }            
             {
               name: 'PASSWORD'
-              value: databasePassword
+              secureValue: databasePassword
             }            
             {
               name: 'DATABASE_NAME'

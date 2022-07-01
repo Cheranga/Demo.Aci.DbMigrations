@@ -49,14 +49,14 @@ resource sqlDatabase 'Microsoft.Sql/servers/databases@2020-08-01-preview' = {
   }
 }
 
-// resource allowedWindowsAzureIps 'Microsoft.Sql/servers/firewallRules@2020-02-02-preview' = {
-//   parent: sqlServer
-//   name: 'AllowAllWindowsAzureIps'
-//   properties: {
-//     startIpAddress: '0.0.0.0'
-//     endIpAddress: '0.0.0.0'
-//   }
-// }
+resource allowedWindowsAzureIps 'Microsoft.Sql/servers/firewallRules@2020-02-02-preview' = {
+  parent: sqlServer
+  name: 'AllowAllWindowsAzureIps'
+  properties: {
+    startIpAddress: '0.0.0.0'
+    endIpAddress: '0.0.0.0'
+  }
+}
 
 resource connectionPolicies 'Microsoft.Sql/servers/connectionPolicies@2021-11-01-preview' = {
   name: 'default'
