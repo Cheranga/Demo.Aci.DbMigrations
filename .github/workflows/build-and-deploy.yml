@@ -40,12 +40,6 @@ jobs:
       RG_LOCATION: australiasoutheast
       
     steps:
-      - name: Download Artifact - Templates
-        uses: actions/download-artifact@v3
-        with:
-          name: deploy
-          path: deploy
-              
       - name: Generate Build Number
         id: generatebuildnumber
         run: |
@@ -66,6 +60,12 @@ jobs:
           credentials: ${{ secrets.AZURE_CREDENTIALS }}
           name: ${{ env.RG_NAME }}
           location: ${{ env.RG_LOCATION }}  
+
+      - name: Download Artifact - Templates
+        uses: actions/download-artifact@v3
+        with:
+          name: deploy
+          path: deploy          
 
       - name: Login to Azure CLI       
         uses: azure/login@v1
