@@ -8,10 +8,10 @@ param location string = resourceGroup().location
 param image string
 
 @description('The number of CPU cores to allocate to the container.')
-param cpuCores int = int('0.5')
+param cpuCores int = 1
 
 @description('The amount of memory to allocate to the container in gigabytes.')
-param memoryInGb int = int('0.5')
+param memoryInGb int = 1
 
 @description('The behavior of Azure runtime if container has stopped.')
 @allowed([
