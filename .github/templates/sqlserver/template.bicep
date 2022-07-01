@@ -49,14 +49,14 @@ resource sqlDatabase 'Microsoft.Sql/servers/databases@2020-08-01-preview' = {
   }
 }
 
-resource allowedWindowsAzureIps 'Microsoft.Sql/servers/firewallRules@2020-02-02-preview' = {
-  parent: sqlServer
-  name: 'AllowAllWindowsAzureIps'
-  properties: {
-    startIpAddress: '0.0.0.0'
-    endIpAddress: '0.0.0.0'
-  }
-}
+// resource allowedWindowsAzureIps 'Microsoft.Sql/servers/firewallRules@2020-02-02-preview' = {
+//   parent: sqlServer
+//   name: 'AllowAllWindowsAzureIps'
+//   properties: {
+//     startIpAddress: '0.0.0.0'
+//     endIpAddress: '0.0.0.0'
+//   }
+// }
 
 resource connectionPolicies 'Microsoft.Sql/servers/connectionPolicies@2021-11-01-preview' = {
   name: 'default'
@@ -71,3 +71,4 @@ resource connectionPolicies 'Microsoft.Sql/servers/connectionPolicies@2021-11-01
 
 output connectionString string = 'Server=${dbServerUrl},1433;Initial Catalog=${databaseName};Persist Security Info=False;User ID=${adminUserName};Password=${adminPassword};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
 output databaseServerUrl string = dbServerUrl
+output serverName string = sqlServer.properties.fullyQualifiedDomainName
