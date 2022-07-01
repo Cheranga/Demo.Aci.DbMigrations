@@ -69,6 +69,3 @@ resource containerGroup 'Microsoft.ContainerInstance/containerGroups@2021-09-01'
     restartPolicy: restartPolicy    
   }
 }
-
-output containerIPv4Address string = containerGroup.properties.ipAddress.ip
-output managedId string = containerGroup.identity.principalId
