@@ -14,10 +14,25 @@ on:
   workflow_dispatch:
       
 jobs:
+  build:
+    name: Create artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2      
+          
+      - name: Publish Artifacts - Deployment Templates
+        uses: actions/upload-artifact@v3
+        with:
+          name: deploy
+          path: ./.github/templates
+          if-no-files-found: error    
+
   deploytodev:
     environment: DEV
     name: DEV
     runs-on: ubuntu-latest
+    needs: build
     env:
       ENVNAME: "dev"
       IMAGE_NAME: "demo.db.bankaccounts"
@@ -62,16 +77,16 @@ jobs:
           resourceGroupName: ${{ env.RG_NAME }}
           template: deploy/main.bicep
           parameters: >            
-            buildNumber=${{ env.BUILD_VERSION }}
-            appName=${{ env.APP_NAME }}
-            environmentName=${{ env.APP_NAME }}
-            location=${{ env.RG_LOCATION }}
-            containerImage=${{ secrets.DOCKER_USER }}/demo.db.bankaccounts:${{ env.BUILD_VERSION }}
-            sqlServerLocation=${{ env.SQL_SERVER_LOCATION }}
-            databaseServerName=${{ env.DATABASE_SERVER }}
-            databaseName=${{ secrets.DATABASE_NAME }}
-            databaseUserName=${{ secrets.DATABASE_USERNAME }}
-            databasePassword=${{ secrets.DATABASE_PASSWORD }}
+            buildNumber=${{ env.BUILD_VERSION }} 
+            appName=${{ env.APP_NAME }} 
+            environmentName=${{ env.APP_NAME }} 
+            location=${{ env.RG_LOCATION }} 
+            containerImage=${{ secrets.DOCKER_USER }}/demo.db.bankaccounts:${{ env.BUILD_VERSION }} 
+            sqlServerLocation=${{ env.SQL_SERVER_LOCATION }} 
+            databaseServerName=${{ env.DATABASE_SERVER }} 
+            databaseName=${{ secrets.DATABASE_NAME }} 
+            databaseUserName=${{ secrets.DATABASE_USERNAME }} 
+            databasePassword=${{ secrets.DATABASE_PASSWORD }} 
       - name: Logout from Azure CLI     
         uses: azure/CLI@v1
         with:
