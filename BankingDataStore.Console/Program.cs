@@ -39,3 +39,6 @@ if (upgradeEngine.IsUpgradeRequired())
 Console.WriteLine("Database migrations are not required");
 return 0;
 
+
+
+
