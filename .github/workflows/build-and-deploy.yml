@@ -40,6 +40,12 @@ jobs:
       RG_LOCATION: australiasoutheast
       
     steps:
+      - name: Download Artifact - Templates
+        uses: actions/download-artifact@v3
+        with:
+          name: deploy
+          path: deploy
+              
       - name: Generate Build Number
         id: generatebuildnumber
         run: |
