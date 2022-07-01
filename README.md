@@ -17,7 +17,7 @@ Although the data store migration activities will be associated with your applic
 
 In here we will be migrate a `SQL database` using `Azure Container Instances`.
 
-[<<back](#table-of-contents)
+[<<back](#sql-database-migrations-with-azure-container-instances-and-dbup)
 
 
 ## Azure Container Instances (ACI)
@@ -34,7 +34,7 @@ Azure container instances is a perfect fit for this because,
 
 For more in depth information about ACI please refer the [documentation](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview)
 
-[<<back](#table-of-contents)
+[<<back](#sql-database-migrations-with-azure-container-instances-and-dbup)
 
 ## DbUp
 
@@ -45,7 +45,7 @@ The next feature I like about `DbUp` is that how it keeps track of the queries/m
 
 I use a convention to name my queries like `yyyyMMddHHmm-[query name].sql`. In this way the queries are numbered and `DbUp` simply orders them and execute them in order. Simples!
 
-[<<back](#table-of-contents)
+[<<back](#sql-database-migrations-with-azure-container-instances-and-dbup)
 
 ## Application
 
@@ -152,7 +152,7 @@ services:
 
 ```
 
-[<<back](#table-of-contents)
+[<<back](#sql-database-migrations-with-azure-container-instances-and-dbup)
 
 ## CI/CD with GitHub Actions and Azure Bicep
 
@@ -180,7 +180,7 @@ sequenceDiagram
 ![The deployment pipeline in action](images/cicdrun.png)
 
 
-[<<back](#table-of-contents)
+[<<back](#sql-database-migrations-with-azure-container-instances-and-dbup)
 
 ## Deployments
 
@@ -196,5 +196,5 @@ sequenceDiagram
 
 ![database migration results](images/table_creation.png)
 
-[<<back](#table-of-contents)
+[<<back](#sql-database-migrations-with-azure-container-instances-and-dbup)
 
