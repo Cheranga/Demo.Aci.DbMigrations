@@ -1,8 +1,7 @@
 ﻿name: "Demo.Aci.DbMigrations"
 concurrency: "Demo.Aci.DbMigrations"
 env:
-  DOTNET_VERSION: 6.0.x
-  APP_NAME: bankaccounts  
+  DOTNET_VERSION: 6.0.x  
 on:
   pull_request:
     branches:
@@ -11,7 +10,7 @@ on:
       - README.md
       - .gitignore
         
-  workflow_dispatch:
+    workflow_dispatch:
       
 jobs:
   deploytodev:
@@ -19,10 +18,8 @@ jobs:
     name: DEV
     runs-on: ubuntu-latest
     env:
-      ENVNAME: dev
-      IMAGE_NAME: demo.db.bankaccounts
-      RG_NAME: rg-demo-aci
-      RG_LOCATION: australiasoutheast
+      ENVNAME: "dev"
+      IMAGE_NAME: "demo.db.bankaccounts"
       
     steps:
       - name: Generate Build Number
@@ -37,38 +34,4 @@ jobs:
           dockerPassword: ${{secrets.DOCKER_PASSWORD}}
           dockerFilePath: BankingDataStore.Console/Dockerfile
           imageName: ${{ env.IMAGE_NAME }}
-          imageTag: ${{ env.BUILD_VERSION }} 
-
-      - name: Create Resource Group - ${{ env.RG_NAME }}-${{ env.ENVNAME }}
-        uses: Cheranga/GitHubActions/createresourcegroup@master
-        with:
-          credentials: ${{ secrets.AZURE_CREDENTIALS }}
-          name: ${{ env.RG_NAME }}-${{ env.ENVNAME }}
-          location: ${{ env.RG_LOCATION }}
-
-      - name: Login to Azure CLI       
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}      
-
-      - name: Provision Resources
-        env:
-          DATABASE_SERVER: ccdemosqlserver${{ env.ENVNAME }}
-          SQL_SERVER_LOCATION: australiaeast
-        uses: azure/arm-deploy@v1
-        with:
-          failOnStdErr: false
-          deploymentName: ${{ env.BUILD_VERSION }}-${{ env.APP_NAME }}
-          resourceGroupName: ${{ env.RG_NAME }}-${{ env.ENVNAME }}
-          template: deploy/main.bicep
-          parameters: >            
-            buildNumber=${{ env.BUILD_VERSION }}
-            appName=${{ env.APP_NAME }}
-            environmentName=${{ env.ENVNAME }}
-            location=${{ env.RG_LOCATION }}
-            containerImage=${{ secrets.DOCKER_USER }}/demo.db.bankaccounts:${{ env.BUILD_VERSION }}
-            sqlServerLocation=${{ env.SQL_SERVER_LOCATION }}
-            databaseServerName=${{ env.DATABASE_SERVER }}            
-            databaseName=${{ secrets.DATABASE_NAME }}
-            databaseUserName=${{ secrets.DATABASE_USERNAME }}
-            databasePassword=${{ secrets.DATABASE_PASSWORD }}                                  
+          imageTag: ${{ env.BUILD_VERSION }}             
