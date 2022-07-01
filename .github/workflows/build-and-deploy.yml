@@ -39,11 +39,11 @@ jobs:
           imageName: ${{ env.IMAGE_NAME }}
           imageTag: ${{ env.BUILD_VERSION }}       
 
-      - name: Create Resource Group - ${{ env.RG_NAME }}-${{ env.ENVNAME }}
+      - name: Create Resource Group - ${{ env.RG_NAME }}
         uses: Cheranga/GitHubActions/createresourcegroup@master
         with:
           credentials: ${{ secrets.AZURE_CREDENTIALS }}
-          name: ${{ env.RG_NAME }}-${{ env.ENVNAME }}
+          name: ${{ env.RG_NAME }}
           location: ${{ env.RG_LOCATION }}  
 
       - name: Login to Azure CLI       
@@ -59,7 +59,7 @@ jobs:
         with:
           failOnStdErr: false
           deploymentName: ${{ env.BUILD_VERSION }}-${{ env.APP_NAME }}
-          resourceGroupName: ${{ env.RG_NAME }}-${{ env.ENVNAME }}
+          resourceGroupName: ${{ env.RG_NAME }}
           template: deploy/main.bicep
           parameters: >            
             buildNumber=${{ env.BUILD_VERSION }}
