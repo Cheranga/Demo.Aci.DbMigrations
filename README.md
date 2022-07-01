@@ -1,13 +1,12 @@
 # SQL Database migrations with Azure Container Instances and DbUp
 
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Azure Container Instances](#azure-container-instances-aci)
-- [DbUp](#dbup)
-- [Console app to migrate the database](#application) 
-- [CI/CD with GitHub Actions](#cicd-with-github-actions-and-azure-bicep)
-- [Deployments](#deployments)
+- [SQL Database migrations with Azure Container Instances and DbUp](#sql-database-migrations-with-azure-container-instances-and-dbup)
+  - [Introduction](#introduction)
+  - [Azure Container Instances (ACI)](#azure-container-instances-aci)
+  - [DbUp](#dbup)
+  - [Application](#application)
+  - [CI/CD with GitHub Actions and Azure Bicep](#cicd-with-github-actions-and-azure-bicep)
+  - [Deployments](#deployments)
 
 
 ## Introduction
@@ -176,8 +175,7 @@ sequenceDiagram
   DEV Environment->>Docker Hub: build image and push to Docker Hub
   DEV Environment->>Azure: create resource group if does not exist
   DEV Environment->>DEV Environment: download artifact (Bicep templates)
-  DEV Environment->>Azure: provision resources using Bicep templates
-    
+  DEV Environment->>Azure: provision resources using Bicep templates    
 ```
 ![The deployment pipeline in action](images/cicdrun.png)
 
