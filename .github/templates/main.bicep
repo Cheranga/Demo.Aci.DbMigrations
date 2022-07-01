@@ -27,7 +27,7 @@ module containerInstance 'aci/template.bicep' = {
   params: {
     location: location
     name: aciName
-    databaseServerName: database.outputs.databaseServerUrl
+    databaseServerName: database.outputs.serverName
     databaseName: databaseName
     databaseUserName: databaseUserName
     databasePassword: databasePassword

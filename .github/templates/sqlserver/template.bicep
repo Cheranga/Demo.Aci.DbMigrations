@@ -69,6 +69,4 @@ resource connectionPolicies 'Microsoft.Sql/servers/connectionPolicies@2021-11-01
   ]
 }
 
-output connectionString string = 'Server=${dbServerUrl},1433;Initial Catalog=${databaseName};Persist Security Info=False;User ID=${adminUserName};Password=${adminPassword};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
-output databaseServerUrl string = dbServerUrl
-output serverName string = sqlServer.properties.fullyQualifiedDomainName
+output serverName string = 'tcp:${sqlServer.properties.fullyQualifiedDomainName}'
