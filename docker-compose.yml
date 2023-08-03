@@ -21,8 +21,8 @@ services:
     ports:
       - "1433:1433"
     volumes:
-      - ./bankdata/data:/var/opt/mssql/data
-      - ./bankdata/logs:/var/opt/mssql/log
-      - ./bankdata/secrets:/var/opt/mssql/secrets
+      - ./.idea/bankdata/data:/var/opt/mssql/data
+      - ./.idea/bankdata/logs:/var/opt/mssql/log
+      - ./.idea/bankdata/secrets:/var/opt/mssql/secrets
 
 

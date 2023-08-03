@@ -1,0 +1,11 @@
+name: "PR Build"
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ 'main' ]
+
+jobs:
+  TEST:
+    name: Tests    
+    uses: ./.github/workflows/run-tests.yml
