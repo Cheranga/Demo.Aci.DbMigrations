@@ -22,7 +22,7 @@ jobs:
   test:
     name: Test
     needs: checkout
-    uses: ./github/workflows/run-tests.yml
+    uses: ./.github/actions/run-tests.yml
     with:
       dotnetVersion: 6.0.x
   
