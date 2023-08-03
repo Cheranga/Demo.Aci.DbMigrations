@@ -6,24 +6,6 @@ on:
     branches: [ 'main' ]
 
 jobs:
-  SND:
-    name: SND
-    needs: installations
+  TEST:
+    name: Tests    
     uses: ./.github/workflows/run-tests.yml
-    with:
-      projectName: Demo.Selenium.Bank
-      environment: snd
-    secrets:
-      userName: ${{ secrets.USERNAME }}
-      password: ${{ secrets.PASSWORD }}
-  
-  DEV:
-    name: DEV
-    needs: installations
-    uses: ./.github/workflows/run-tests.yml
-    with:
-      projectName: Demo.Selenium.Bank
-      environment: dev
-    secrets:
-      userName: ${{ secrets.USERNAME }}
-      password: ${{ secrets.PASSWORD }}
