@@ -1,5 +1,9 @@
 ﻿name: "CI Build"
 
+env:
+  APP_NAME: bankaccounts
+  
+
 on:
   workflow_dispatch:
   push:
