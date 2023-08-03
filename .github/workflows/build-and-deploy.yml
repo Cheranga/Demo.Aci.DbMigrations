@@ -1,17 +1,10 @@
-﻿name: "Demo.Aci.DbMigrations"
-concurrency: "Demo.Aci.DbMigrations"
-env:
-  DOTNET_VERSION: 6.0.x
-  APP_NAME: bankaccounts
+﻿name: "CI Build"
+
 on:
-  pull_request:
+  workflow_dispatch:
+  push:
     branches:
       - main
-    paths-ignore:
-      - README.md
-      - .gitignore
-        
-  workflow_dispatch:
       
 jobs:
   build:
