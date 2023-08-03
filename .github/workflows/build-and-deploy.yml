@@ -16,7 +16,7 @@ on:
 jobs:
   test:
     name: Test
-    uses: ./github/workflows/run-tests.yml
+    uses: ./run-tests.yml
     with:
       dotnetVersion: 6.0.x
   
