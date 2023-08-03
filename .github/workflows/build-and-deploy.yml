@@ -1,5 +1,7 @@
 ﻿name: "CI Build"
-
+env:
+  DOTNET_VERSION: 6.0.x
+  APP_NAME: bankaccounts
 on:
   workflow_dispatch:
   push:
