@@ -1,0 +1,19 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.4"
+services:
+  dbsetup:
+    build:
+      context: "C:\\Users\\chatangala\\RiderProjects\\Demo.Aci.DbMigrations"
+      dockerfile: "BankingDataStore.Console/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net6.0/BankingDataStore.Console.dll"
+    environment:
+      DOTNET_ENVIRONMENT: "Development"
+    image: "bankingdatastore.console:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\chatangala\\RiderProjects\\Demo.Aci.DbMigrations\\BankingDataStore.Console:/app:rw"
+    working_dir: "/app"
