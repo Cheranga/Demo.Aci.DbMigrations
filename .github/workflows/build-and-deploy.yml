@@ -16,11 +16,8 @@ on:
 jobs:
   test:
     name: Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Test Database Migrations
-        uses: ./.github/workflows/run-tests.yml
-        
+    uses: ./github/workflows/run-tests.yml
+  
   build:
     name: Create artifact
     runs-on: ubuntu-latest
