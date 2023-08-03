@@ -9,12 +9,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="dbup-sqlserver" Version="4.6.0" />
+        <PackageReference Include="dbup-sqlserver" Version="4.6.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Scripts\202206291830-create_accounts_table.sql" />
-      <EmbeddedResource Include="Scripts\202206291830-create_accounts_table.sql" />
+        <None Remove="Scripts\202206291830-create_accounts_table.sql"/>
+        <EmbeddedResource Include="Scripts\202206291830-create_accounts_table.sql"/>
     </ItemGroup>
 
 </Project>

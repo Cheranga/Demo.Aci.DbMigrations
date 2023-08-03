@@ -1,4 +1,4 @@
-﻿using DbUp;
+﻿using BankingDataStore.Console;
 
 Console.WriteLine("Starting database migrations");
 
@@ -7,31 +7,9 @@ var userName = Environment.GetEnvironmentVariable("USERNAME");
 var password = Environment.GetEnvironmentVariable("PASSWORD");
 var databaseName = Environment.GetEnvironmentVariable("DATABASE_NAME");
 
-var connectionString = $"Server={serverName},1433;Database={databaseName};User Id={userName};Password={password};";
+ArgumentNullException.ThrowIfNull(serverName);
+ArgumentNullException.ThrowIfNull(databaseName);
+ArgumentNullException.ThrowIfNull(userName);
+ArgumentNullException.ThrowIfNull(password);
 
-EnsureDatabase.For.SqlDatabase(connectionString);
-
-var upgradeEngineBuilder = DeployChanges.To
-    .SqlDatabase(connectionString)
-    .WithScriptsEmbeddedInAssembly(typeof(Program).Assembly)
-    .WithTransactionPerScript()
-    .LogToConsole();
-
-var upgradeEngine = upgradeEngineBuilder.Build();
-if (upgradeEngine.IsUpgradeRequired())
-{
-    Console.WriteLine("Database migrations must be performed");
-
-    var operation = upgradeEngine.PerformUpgrade();
-    if (operation.Successful)
-    {
-        Console.WriteLine("Database migration successful");
-        return 0;
-    }
-
-    Console.WriteLine("Database migration failed");
-    return -1;
-}
-
-Console.WriteLine("Database migrations are not required");
-return 0;
+DatabaseMigrator.Migrate(new SqlDatabaseOptions(serverName, databaseName, userName, password));
